@@ -2,7 +2,7 @@ name: Python CodeGuru Reviewer
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
     branches: [main]
 
@@ -27,3 +27,8 @@ jobs:
         uses: aws-actions/codeguru-reviewer@v1.1
         with:
           s3_bucket: codeguru-reviewer-arash
+
+      - name: Upload review result
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: codeguru-results.sarif.json
